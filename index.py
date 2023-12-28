@@ -8,6 +8,8 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
+points = []
+
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -20,12 +22,23 @@ while running:
 
     font = pygame.font.Font(None, 36)
 
-    pygame.draw.rect(screen, '#f5f5f5', (50, 75, 10, 600)) # Y Axis Rectangle
+    pygame.draw.rect(screen, '#f5f5f5', (50, 75, 10, 550)) # Y Axis Rectangle
     pygame.draw.polygon(screen, '#f5f5f5', ((45, 75), (55, 60), (65, 75))) # Y Axis Arrow
     screen.blit(font.render("Entfernung in cm", True, '#f5f5f5'), (40, 20)) # Y Axis Text
 
-    # put your work on screen
-    pygame.display.flip()
+    pygame.draw.rect(screen, '#f5f5f5', (50, 625, 1100, 10)) # X Axis Rectangle
+    pygame.draw.polygon(screen, '#f5f5f5', ((1150, 620), (1165, 630), (1150, 640))) # X Axis Arrow
+    screen.blit(font.render("Zeit in s", True, '#f5f5f5'), (1110, 660)) # X Axis Text
+
+    value = ser.readline().decode('UTF-8')
+    
+    if len(value) > 0:
+        points.append(round(float(value), 2))
+
+    for i, point in enumerate(points):
+        pygame.draw.rect(screen, '#f5f5f5', (50 + (i + 1) * 5, 625 - (point * 10), 5, 5)) 
+
+    pygame.display.flip() # put your work on screen
 
     clock.tick(60)  # limits FPS to 60
 
