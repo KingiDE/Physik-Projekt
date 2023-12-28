@@ -34,9 +34,10 @@ while running:
     
     if len(value) > 0:
         points.append(round(float(value), 2))
-
+    
     for i, point in enumerate(points):
-        pygame.draw.rect(screen, '#f5f5f5', (50 + (i + 1) * 5, 625 - (point * 10), 5, 5)) 
+        if not i == 0:
+            pygame.draw.line(screen, '#f5f5f5', (50 + i * 5, 625 - (points[i - 1] * 10)), (50 + (i + 1) * 5, 625 - (points[i] * 10)), 5) 
 
     pygame.display.flip() # put your work on screen
 
