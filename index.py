@@ -1,5 +1,6 @@
 import serial
 import pygame
+import random
 
 # pygame setup
 pygame.init()
@@ -33,6 +34,11 @@ while running:
     pygame.draw.polygon(screen, '#f5f5f5', ((1150, 620), (1165, 630), (1150, 640))) # X Axis Arrow
     screen.blit(font.render("Zeit in s", True, '#f5f5f5'), (1110, 660)) # X Axis Text
 
+    # draw scale markers for 5, 10, 15 and 20 seconds
+    for second in [5, 10, 15, 20]:
+        pygame.draw.rect(screen, '#f5f5f5', (50 + second * 20 - 10, 625, 1, 30))
+        screen.blit(font.render(str(second), True, '#f5f5f5'), (50 + second * 20 - 20, 660)) # X Axis Text
+
     value = ser.readline().decode('UTF-8')
     
     if len(value) > 0:
@@ -40,7 +46,8 @@ while running:
     
     for i, point in enumerate(points):
         if not i == 0:
-            pygame.draw.line(screen, '#f5f5f5', (50 + i * 5, 625 - (points[i - 1] * 10)), (50 + (i + 1) * 5, 625 - (points[i] * 10)), 5) 
+            # color = ['red', 'green', 'yellow', 'blue', 'black']
+            pygame.draw.line(screen, '#f5f5f5', (50 + i * 20 - 10, 625 - (points[i - 1] * 10)), (50 + (i + 1) * 20 - 10, 625 - (points[i] * 10)), 5) 
 
     pygame.display.flip() # put your work on screen
 
