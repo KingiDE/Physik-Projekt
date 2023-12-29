@@ -35,9 +35,14 @@ while running:
     screen.blit(font.render("Zeit in s", True, '#f5f5f5'), (1110, 660)) # X Axis Text
 
     # draw scale markers for x axis
-    for second in [5, 10, 15, 20, 25, 30, 35, 40, 45]:
+    for second in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]:
         pygame.draw.rect(screen, '#f5f5f5', (50 + second * 20 - 10, 625, 1, 30))
         screen.blit(font.render(str(second), True, '#f5f5f5'), (50 + second * 20 - 20, 660)) # X Axis Text
+
+    # draw scale markers for y axis
+    for distance in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]:
+        pygame.draw.rect(screen, '#f5f5f5', (30, 625 - (distance * 5), 20, 1))
+        screen.blit(font.render(str(distance), True, '#f5f5f5'), (10, 625 - (distance * 5) - 20)) # X Axis Text
 
     value = ser.readline().decode('UTF-8')
 
