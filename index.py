@@ -16,6 +16,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                points = []
 
     # RENDER YOUR GAME HERE
     screen.fill('#1b1b1b')
