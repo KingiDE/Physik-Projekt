@@ -11,6 +11,23 @@ clock = pygame.time.Clock()
 running = True
 
 points = []
+leading = []
+
+def calculateLeading():
+    for i in range(13):
+        if i == 0:
+            leading.append(random.choice(range(1, 90)))
+        else: 
+            generated = leading[i - 1] + random.choice(range(-8, 8))
+            if generated < 5: 
+                leading.append(5)
+            elif generated > 90:
+                leading.append(90)
+            else: 
+                leading.append(generated)
+
+calculateLeading()
+
 
 while running:
     # poll for events
@@ -21,6 +38,8 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 points = []
+                leading = []
+                calculateLeading()
 
     # RENDER YOUR GAME HERE
     screen.fill('#1b1b1b')
@@ -46,6 +65,10 @@ while running:
     for value in [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]:
         pygame.draw.rect(screen, '#f5f5f5', (origin_x - 20, origin_y - (value * 8), 20, 1))
         screen.blit(font.render(str(value), True, '#f5f5f5'), (20, origin_y - (value * 8) - 10))
+
+    for i, l in enumerate(leading): # draw leading line
+        if not i == 0:
+            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 100, origin_y - leading[i - 1] * 8), (origin_x + i * 100, origin_y - leading[i] * 8)) 
 
     value = ser.readline().decode('UTF-8')
     
