@@ -14,11 +14,16 @@ points = []
 leading = []
 
 def calculate():
-    for i in range(12):
+    for i in range(11):
         if i == 0:
             leading.append(random.choice(range(1, 100)))
         else: 
-            leading.append(leading[i - 1] + random.choice(range(-8, 8)))
+            generated = leading[i - 1] + random.choice(range(-8, 8))
+            if generated < 20: 
+                leading.append(20)
+            elif generated > 100:
+                leading.append(100)
+            leading.append(generated)
     
 calculate()
 
@@ -40,9 +45,11 @@ while running:
     font = pygame.font.Font(None, 36)
 
     # draw leading line
-    for i, p in enumerate(leading):
+    for i, l in enumerate(leading):
         if not i == 0:
-            pygame.draw.line(screen, 'purple', (i * 80 + 5, 625 - leading[i - 1] * 5), ((i + 1) * 80 + 5, 625 - leading[i] * 5), 1) 
+            pygame.draw.line(screen, 'purple', (i * 100 - 15, 625 - leading[i - 1] * 5), ((i + 1) * 100 - 15, 625 - leading[i] * 5), 1) 
+    
+    # pygame.draw.rect(screen, 'red', (85, 415, 10, 210)) # Test
 
     pygame.draw.rect(screen, '#f5f5f5', (75, 75, 10, 550)) # Y Axis Rectangle
     pygame.draw.polygon(screen, '#f5f5f5', ((70, 75), (80, 60), (90, 75))) # Y Axis Arrow
