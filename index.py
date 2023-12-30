@@ -11,6 +11,17 @@ running = True
 
 points = []
 
+leading = []
+
+def calculate():
+    for i in range(12):
+        if i == 0:
+            leading.append(random.choice(range(1, 100)))
+        else: 
+            leading.append(leading[i - 1] + random.choice(range(-8, 8)))
+    
+calculate()
+
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close your window
@@ -20,11 +31,18 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 points = []
+                leading = []
+                calculate()
 
     # RENDER YOUR GAME HERE
     screen.fill('#1b1b1b')
 
     font = pygame.font.Font(None, 36)
+
+    # draw leading line
+    for i, p in enumerate(leading):
+        if not i == 0:
+            pygame.draw.line(screen, 'purple', (i * 80 + 5, 625 - leading[i - 1] * 5), ((i + 1) * 80 + 5, 625 - leading[i] * 5), 1) 
 
     pygame.draw.rect(screen, '#f5f5f5', (75, 75, 10, 550)) # Y Axis Rectangle
     pygame.draw.polygon(screen, '#f5f5f5', ((70, 75), (80, 60), (90, 75))) # Y Axis Arrow
