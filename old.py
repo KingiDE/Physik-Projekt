@@ -70,8 +70,6 @@ while running:
         screen.blit(font.render(str(distance), True, '#f5f5f5'), (10, 625 - (distance * 5) - 10)) # Y Axis Text
 
     value = ser.readline().decode('UTF-8')
-
-    print(value)
     
     if len(value) > 0:
         points.append(round(float(value), 2))
