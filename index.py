@@ -62,13 +62,13 @@ while running:
         pygame.draw.rect(screen, '#f5f5f5', (origin_x + value * 20, origin_y, 1, 20))
         screen.blit(font.render(str(value), True, '#f5f5f5'), (origin_x + value * 20 - 10, 860))
     
-    for value in [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]:
-        pygame.draw.rect(screen, '#f5f5f5', (origin_x - 20, origin_y - (value * 8), 20, 1))
-        screen.blit(font.render(str(value), True, '#f5f5f5'), (20, origin_y - (value * 8) - 10))
+    for value in [0, 20, 40, 60, 80, 100, 120, 140, 160]:
+        pygame.draw.rect(screen, '#f5f5f5', (origin_x - 20, origin_y - (value * 4), 20, 1))
+        screen.blit(font.render(str(value), True, '#f5f5f5'), (10, origin_y - (value * 4) - 10))
 
     for i, l in enumerate(leading): # draw leading line
         if not i == 0:
-            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 100, origin_y - leading[i - 1] * 8), (origin_x + i * 100, origin_y - leading[i] * 8)) 
+            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 100, origin_y - leading[i - 1] * 4), (origin_x + i * 100, origin_y - leading[i] * 4)) 
 
     value = ser.readline().decode('UTF-8')
     
@@ -77,7 +77,7 @@ while running:
 
     for i, point in enumerate(points):
         if not i == 0:
-            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 20, origin_y - points[i - 1] * 8), (origin_x + i * 20, origin_y - points[i] * 8))
+            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 20, origin_y - points[i - 1] * 4), (origin_x + i * 20, origin_y - points[i] * 4))
 
     pygame.display.flip() # put your work on screen
 
