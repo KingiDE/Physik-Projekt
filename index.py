@@ -72,6 +72,9 @@ while running:
 
     value = ser.readline().decode('UTF-8')
     
+    if len(points) >= 60:
+        points = []
+
     if len(value) > 0:
         points.append(round(float(value), 2))
 
