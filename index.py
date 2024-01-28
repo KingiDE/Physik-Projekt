@@ -75,7 +75,7 @@ while running:
     if len(value) > 0:
         points.append(round(float(value), 2))
 
-    for i, point in enumerate(points):
+    for i, point in enumerate(points): # draw points line
         if not i == 0:
             pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 20, origin_y - points[i - 1] * 4), (origin_x + i * 20, origin_y - points[i] * 4))
 
