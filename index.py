@@ -68,7 +68,7 @@ while running:
 
     for i, l in enumerate(leading): # draw leading line
         if not i == 0:
-            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 100, origin_y - leading[i - 1] * 4), (origin_x + i * 100, origin_y - leading[i] * 4)) 
+            pygame.draw.line(screen, '#772ac0', (origin_x + (i - 1) * 100, origin_y - leading[i - 1] * 4), (origin_x + i * 100, origin_y - leading[i] * 4)) 
 
     value = ser.readline().decode('UTF-8')
     
@@ -80,7 +80,8 @@ while running:
 
     for i, point in enumerate(points): # draw points line
         if not i == 0:
-            pygame.draw.line(screen, '#f5f5f5', (origin_x + (i - 1) * 20, origin_y - points[i - 1] * 4 if origin_y - points[i - 1] * 4 > 75 else 75), (origin_x + i * 20, origin_y - points[i] * 4 if origin_y - points[i] * 4 > 75 else 75))
+            color = '#ff4050' if origin_y - points[i - 1] * 4 < 75 and origin_y - points[i] * 4 < 75 else '#f5f5f5'
+            pygame.draw.line(screen, color, (origin_x + (i - 1) * 20, origin_y - points[i - 1] * 4 if origin_y - points[i - 1] * 4 > 75 else 75), (origin_x + i * 20, origin_y - points[i] * 4 if origin_y - points[i] * 4 > 75 else 75))
 
     pygame.display.flip() # put your work on screen
 
