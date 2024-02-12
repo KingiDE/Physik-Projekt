@@ -18,7 +18,7 @@ def calculateLeading():
         if i == 0:
             leading.append(random.choice(range(1, 90)))
         else: 
-            generated = leading[i - 1] + random.choice(range(-8, 8))
+            generated = leading[i - 1] + random.choice(range(-12, 12))
             if generated < 5: 
                 leading.append(5)
             elif generated > 90:
